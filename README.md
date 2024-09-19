@@ -1,6 +1,9 @@
 # SFDC-MaxioAB-Integration
 This AWS Lambda function integrates Salesforce data with Maxio Advanced Billing and Core. It processes closed won opportunities in Salesforce and creates corresponding customer records, component price points, and subscriptions in Maxio Advanced Billing. It then establishes a relationsip from AB to Maxio Core.
 
+## Process Design
+![image](https://github.com/user-attachments/assets/60c86327-45a2-4f1d-94df-dda2257f418b)
+
 ## Features
 - Retrieves Salesforce data utilzing Salesforce API
 - Processes Salesforce Opportunity, Quote, Order, and related objects
@@ -24,17 +27,31 @@ Set up AWS Secrets Manager with the following secrets:
 
 ## Usage
 The Lambda function is triggered by an API Gateway event. The event should contain a JSON payload with the Salesforce Opportunity ID:
-![image](https://github.com/user-attachments/assets/67f51bff-7d73-4608-875f-871a9fe0ad83)
+![image](https://github.com/user-attachments/assets/4528fa39-9358-4f09-b7c0-ed6e17877f92)
 
-Function Flow
+## Function Flow
+1. Salesforce Authentication and Data Retrieval
+   - Authenticate with Salesforce API using OAuth 2.0
+   - Retrieve Opportunity data based on the provided Opportunity ID
+   - Fetch related Quote, Order, OrderItem, and Consumption Schedule data
+     
+2. Data Processing and Transformation
+  - Extract relevant information from Salesforce objects
+  - Transform data into a format suitable for Maxio Advanced Billing
+    
+3. Maxio Customer Management/Creation
+  - Check if the customer already exists in Maxio Advanced Billing
+  - If not, create a new customer record using Salesforce account information
+   
+4. Price Point Generation
+  - For each product in the opportunity:
+      - Create custom price points based on Salesforce consumption schedules
+      - Map Salesforce products to corresponding Maxio components
+        
+5. Subscription Creation in Maxio Advanced Billing
+ - Create a new subscription for the AB customer
+ - Add components to the subscription based on the opportunity products
+ - Apply the custom price points to each component
 
-Authenticate with Salesforce API
-Retrieve Opportunity, Quote, Order, and related data from Salesforce
-Process and transform Salesforce data
-Check if customer exists in Maxio, create if necessary
-Generate custom price points based on Salesforce consumption schedules
-Create subscription in Maxio with appropriate components and price points
-
-Error Handling
-The function includes basic error handling and logging. Errors are logged to CloudWatch for troubleshooting.
-
+6. Maxio Core Transaction Integration
+  - Utilize Maxio Core API to try to establish relationship with associated Maxio Core customer transaction
