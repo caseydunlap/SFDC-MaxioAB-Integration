@@ -36,22 +36,22 @@ The Lambda function is triggered by an API Gateway event. The event should conta
    - Fetch related Quote, Order, OrderItem, and Consumption Schedule data
      
 2. Data Processing and Transformation
-  - Extract relevant information from Salesforce objects
-  - Transform data into a format suitable for Maxio Advanced Billing
+   - Extract relevant information from Salesforce objects
+   - Transform data into a format suitable for Maxio Advanced Billing
     
 3. Maxio Customer Management/Creation
-  - Check if the customer already exists in Maxio Advanced Billing
-  - If not, create a new customer record using Salesforce account information
+   - Check if the customer already exists in Maxio Advanced Billing
+   - If not, create a new customer record using Salesforce account information
    
 4. Price Point Generation
   - For each product in the opportunity:
-      - Create custom price points based on Salesforce consumption schedules
-      - Map Salesforce products to corresponding Maxio components
+     - Create custom price points based on Salesforce consumption schedules
+     - Map Salesforce products to corresponding Maxio components
         
 5. Subscription Creation in Maxio Advanced Billing
- - Create a new subscription for the AB customer
- - Add components to the subscription based on the opportunity products
- - Apply the custom price points to each component
+   - Create a new subscription for the AB customer
+   - Add components to the subscription based on the opportunity products
+   - Apply the custom price points to each component
 
 6. Maxio Core Transaction Integration
-  - Utilize Maxio Core API to try to establish relationship with associated Maxio Core customer transaction
+   - Utilize Maxio Core API to try to establish relationship with associated Maxio Core customer transaction
