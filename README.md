@@ -44,14 +44,14 @@ The Lambda function is triggered by an API Gateway event. The event should conta
    - If not, create a new customer record using Salesforce account information
    
 4. Price Point Generation
-  - For each product in the opportunity:
-     - Create custom price points based on Salesforce consumption schedules
-     - Map Salesforce products to corresponding Maxio components
+   - For each product in the opportunity:
+      - Create custom price points based on Salesforce consumption schedules
+      - Map Salesforce products to corresponding Maxio components
         
-5. Subscription Creation in Maxio Advanced Billing
+6. Subscription Creation in Maxio Advanced Billing
    - Create a new subscription for the AB customer
    - Add components to the subscription based on the opportunity products
    - Apply the custom price points to each component
 
-6. Maxio Core Transaction Integration
+7. Maxio Core Transaction Integration
    - Utilize Maxio Core API to try to establish relationship with associated Maxio Core customer transaction
