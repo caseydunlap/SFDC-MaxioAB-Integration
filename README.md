@@ -66,5 +66,6 @@ The Lambda function is triggered by an API Gateway event. The event should conta
 7. Store Results in Snowflake Table
    - Implement a data persistence layer, utilizing Snowflake table for robust storage and efficient retrieval of integration outcomes
      
-8. Establish Relationship with Maxio Core
-   - In a seperate job that runs daily, leverage Maxio Core API and Snowflake to map AB subscriptions/customers to Maxio Core contracts/customers
+## Autonomous Job
+1. Establish Relationship with Maxio Core
+   - Leverage Maxio Core API and Snowflake to map AB subscriptions/customers to Maxio Core contracts/customers
