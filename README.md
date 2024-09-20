@@ -2,7 +2,8 @@
 This AWS Lambda function integrates Salesforce data with Maxio Advanced Billing and Core. It processes closed won opportunities in Salesforce and creates corresponding customer records, component price points, and subscriptions in Maxio Advanced Billing. It then establishes a relationsip from AB to Maxio Core.
 
 ## Process Design
-![image](https://github.com/user-attachments/assets/60c86327-45a2-4f1d-94df-dda2257f418b)
+![image](https://github.com/user-attachments/assets/d6cab57d-adbb-487f-a82a-1c4a034ad129)
+
 
 ## Features
 - Retrieves Salesforce data utilzing Salesforce API
@@ -10,6 +11,7 @@ This AWS Lambda function integrates Salesforce data with Maxio Advanced Billing 
 - Creates or updates customer records in Maxio Advanced Billing
 - Generates custom pricing tiers based on Salesforce consumption schedules
 - Creates subscriptions in Maxio with appropriate components and price points
+- Establishes sync with Maxio Core customer and contract
 
 ## Prerequisites
 AWS account with Lambda access
@@ -53,5 +55,5 @@ The Lambda function is triggered by an API Gateway event. The event should conta
    - Add components to the subscription based on the opportunity products
    - Apply the custom price points to each component
 
-7. Maxio Core Transaction Integration
-   - Utilize Maxio Core API to try to establish relationship with associated Maxio Core customer transaction
+7. Maxio Core Sync
+   - Utilize Maxio Core API to try to establish relationship with associated Maxio Core customer and contract record
