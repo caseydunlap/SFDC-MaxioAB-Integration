@@ -26,6 +26,14 @@ Set up AWS Secrets Manager with the following secrets:
 - Salesforce Secret Id
 - Maxio Advanced Billing API Key
 - Maxio Core API Key
+- Snowflake username
+- Snowflake password
+- Snowflake account
+- Snowflake warehouse
+- Snowflake schema
+- Snowflake database
+- Snowflake PEM key
+- Snowflake PEM password
 
 ## Usage
 The Lambda function is triggered by an API Gateway event. The event should contain a JSON payload with the Salesforce Opportunity ID:
