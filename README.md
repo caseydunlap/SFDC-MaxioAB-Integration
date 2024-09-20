@@ -11,7 +11,7 @@ This AWS Lambda function integrates Salesforce data with Maxio Advanced Billing 
 - Creates or updates customer records in Maxio Advanced Billing
 - Generates custom pricing tiers based on Salesforce consumption schedules
 - Creates subscriptions in Maxio with appropriate components and price points
-- Establishes sync with Maxio Core customer and contract
+- Establishes relationship with Maxio Core customer and contract
 
 ## Prerequisites
 AWS account with Lambda access
@@ -39,21 +39,24 @@ The Lambda function is triggered by an API Gateway event. The event should conta
      
 2. Data Processing and Transformation
    - Extract relevant information from Salesforce objects
-   - Transform data into a format suitable for Maxio Advanced Billing
+   - Transform data into a format suitable for AB
     
 3. Maxio Customer Management/Creation
-   - Check if the customer already exists in Maxio Advanced Billing
+   - Check if the customer already exists in AB
    - If not, create a new customer record using Salesforce account information
    
 4. Price Point Generation
    - For each product in the opportunity:
       - Create custom price points based on Salesforce consumption schedules
-      - Map Salesforce products to corresponding Maxio components
+      - Map Salesforce products to corresponding AB components
         
 6. Subscription Creation in Maxio Advanced Billing
    - Create a new subscription for the AB customer
    - Add components to the subscription based on the opportunity products
    - Apply the custom price points to each component
 
-7. Maxio Core Sync
-   - Utilize Maxio Core API to try to establish relationship with associated Maxio Core customer and contract record
+7. Store Results in Snowflake Table
+   - Implement a data persistence layer, utilizing Snowflake table for robust storage and efficient retrieval of integration outcomes
+     
+8. Establish Relationship with Maxio Core
+   - In a seperate job that runs daily, leverage Maxio Core API and Snowflake to map AB subscriptions/customers to Maxio Core contracts/customers
