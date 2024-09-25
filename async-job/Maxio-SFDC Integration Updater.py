@@ -112,7 +112,7 @@ contract_assocs_needed = pd.DataFrame.from_records(iter(payload), columns=[x[0] 
 #Extract customer ids from snowflake results
 customer_ids = ", ".join(contract_assocs_needed['AB_REFERENCE'].apply(lambda x: f"'{x}'"))
 
-#
+#Get details about customers who need enrichment from snowflake
 cs = ctx.cursor()
 script = f"""
 select 
@@ -179,7 +179,7 @@ engine = create_engine(
         }
     )
 
-#write the updated customers to snowflake int staging table
+#Write the updated customers to snowflake int staging table
 customers_missing_value_final.to_sql(staging_table_name, engine, if_exists='append', index=False, method='multi', chunksize=1000)
 
 #Merge the updated rows with the final staging table
