@@ -123,7 +123,7 @@ c.text_field_2
 from "{snowflake_fivetran_db}"."{snowflake_schema}"."CONTRACT" c
 inner join "{snowflake_fivetran_db}"."{snowflake_schema}"."CUSTOMER" o on o.id = c.customer_id
 inner join "{snowflake_fivetran_db}"."{snowflake_schema}"."REGISTER" r on c.register_id = r.id
-where c.id = '17056'and sf_act_id in ({customer_ids})
+where lower(r.name) like '%cashe% and sf_act_id in ({customer_ids})
 """
 payload = cs.execute(script)
 customer_update = pd.DataFrame.from_records(iter(payload), columns=[x[0] for x in payload.description])
