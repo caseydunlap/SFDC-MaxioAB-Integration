@@ -36,7 +36,7 @@ Set up AWS Secrets Manager with the following secrets:
 - Snowflake PEM password
 
 ## Usage
-The Lambda function is triggered by an API Gateway event. The event should contain a JSON payload with the Salesforce Opportunity ID:
+The Lambda function is triggered by API Gateway receipt of a POST request from Salesforce. The event should contain a JSON payload with the Salesforce Opportunity ID:
 ![image](https://github.com/user-attachments/assets/4528fa39-9358-4f09-b7c0-ed6e17877f92)
 
 ## Function Flow
@@ -51,7 +51,7 @@ The Lambda function is triggered by an API Gateway event. The event should conta
     
 3. Maxio Customer Management/Creation
    - Check if the customer already exists in AB
-   - If not, create a new customer record using Salesforce account information
+   - If not, create a new AB customer record using Salesforce account information
    
 4. Price Point Generation
    - For each product in the opportunity:
@@ -66,6 +66,6 @@ The Lambda function is triggered by an API Gateway event. The event should conta
 7. Store Results in Snowflake Table
    - Implement a data persistence layer, utilizing Snowflake table for robust storage and efficient retrieval of integration outcomes
      
-## Autonomous Job
+## Asynchronous Job
 1. Establish Relationship with Maxio Core
    - Leverage Maxio Core API and Snowflake to map AB subscriptions/customers to Maxio Core contracts/customers
