@@ -13,7 +13,7 @@ public class OpportunityApiCaller {
         String jsonPayload = JSON.serialize(payload);
         
         HttpRequest req = new HttpRequest();
-        req.setEndpoint('apiendpoint');
+        req.setEndpoint('apigatewayendpoint');
         req.setMethod('POST');
         req.setHeader('Content-Type', 'application/json');
         req.setBody(jsonPayload);
