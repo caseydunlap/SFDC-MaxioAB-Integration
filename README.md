@@ -14,13 +14,13 @@ This AWS Lambda function integrates Salesforce data with Maxio Advanced Billing 
 - Establishes relationship with Maxio Core customer and contract
 
 ## Prerequisites
-AWS account with Lambda access
-Salesforce developer account
-Maxio Advanced Billing account
-Maxio Core Account
-Python 3.9
-Snowflake login and role with write permissions
-Required Python packages (see requirements.txt)
+- AWS account with Lambda access
+- Salesforce developer account
+- Maxio Advanced Billing account with API access
+- Maxio Core Account with API access
+- Python 3.9
+- Snowflake login and role with write permissions
+- Required Python packages (see requirements.txt)
 
 ## Configuration
 Set up AWS Secrets Manager with the following secrets:
