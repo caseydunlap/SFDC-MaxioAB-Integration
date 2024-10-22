@@ -456,8 +456,8 @@ def lambda_handler(event, context):
                 product_specific_dataframes[product] = final_salesforce_df[final_salesforce_df['ProductName'] == product]
 
             component_dictionary = {'Pavillio Subscription - Core Billing':'2544422','Pavillio Subscription - County Billing':'2544424',
-                                    'Managed Billing Subscription':'2554766','Pavillio Per Client Fee':'2544421','Pavillio Platform - Basic':'2544427',
-                                    'Pavillio Platform - Lite':'2544427','Billing Services Subscription (By Claim)': '2544425'}
+                                    'Managed Billing Subscription':'2544425','Pavillio Per Client Fee':'2544421','Pavillio Platform - Basic':'2544427',
+                                    'Pavillio Platform - Lite':'2544427'}
 
             #Instantiate the component price points controller
             component_price_points_controller = client.component_price_points
@@ -496,10 +496,13 @@ def lambda_handler(event, context):
                 #Assign a unique name to the component price point
                 price_point_name = f"{df['AccountName'].iloc[0]}_{random.randint(45205,985478)}"
 
+                #Set pricing scheme dynamically, managed billing uses stairstep
+                pricing_scheme = PricingScheme.STAIRSTEP if component_id == '2544425' else PricingScheme.VOLUME
+
                 price_point_body = CreateComponentPricePointRequest(
                     price_point=CreateComponentPricePoint(
                         name=price_point_name,
-                        pricing_scheme=PricingScheme.VOLUME,
+                        pricing_scheme=pricing_scheme,
                         prices=prices_list,
                         use_site_exchange_rate=False
                     )
@@ -598,8 +601,8 @@ def lambda_handler(event, context):
                 product_specific_dataframes[product] = final_salesforce_df[final_salesforce_df['ProductName'] == product]
 
             component_dictionary = {'Pavillio Subscription - Core Billing':'2544422','Pavillio Subscription - County Billing':'2544424',
-                                    'Managed Billing Subscription':'2554766','Pavillio Per Client Fee':'2544421','Pavillio Platform - Basic':'2544427',
-                                    'Pavillio Platform - Lite':'2544427','Billing Services Subscription (By Claim)': '2544425'}
+                                    'Managed Billing Subscription':'2544425','Pavillio Per Client Fee':'2544421','Pavillio Platform - Basic':'2544427',
+                                    'Pavillio Platform - Lite':'2544427'}
 
             #Instantiate the component price points controller
             component_price_points_controller = client.component_price_points
@@ -635,13 +638,16 @@ def lambda_handler(event, context):
                     unit_price=str(df['PricePer'].iloc[-1])
                 ))
 
+                #Set pricing scheme dynamically, managed billing uses stairstep
+                pricing_scheme = PricingScheme.STAIRSTEP if component_id == '2544425' else PricingScheme.VOLUME
+
                 #Assign a unique name to the component price point
                 price_point_name = f"{df['AccountName'].iloc[0]}_{random.randint(45205,985478)}"
 
                 price_point_body = CreateComponentPricePointRequest(
                     price_point=CreateComponentPricePoint(
                         name=price_point_name,
-                        pricing_scheme=PricingScheme.VOLUME,
+                        pricing_scheme=pricing_scheme,
                         prices=prices_list,
                         use_site_exchange_rate=False
                     )
