@@ -457,7 +457,8 @@ def lambda_handler(event, context):
 
             component_dictionary = {'Pavillio Subscription - Core Billing':'2544422','Pavillio Subscription - County Billing':'2544424',
                                     'Managed Billing Subscription':'2544425','Pavillio Per Client Fee':'2544421','Pavillio Platform - Basic':'2544427',
-                                    'Pavillio Platform - Lite':'2544427'}
+                                    'Pavillio Platform - Lite':'2544427','Billing Services Overages':'2590590','Core Overages':'2590591','Duals and Medicare Home Overages':'2590592','I/DD Overages':'2590593',
+                                    'Medicaid Home Health Overages':'2590594','Startup Package Overages':'2590595','Core+ Overages':'2637227','Core++ Overages':'2637228'}
 
             #Instantiate the component price points controller
             component_price_points_controller = client.component_price_points
@@ -602,7 +603,8 @@ def lambda_handler(event, context):
 
             component_dictionary = {'Pavillio Subscription - Core Billing':'2544422','Pavillio Subscription - County Billing':'2544424',
                                     'Managed Billing Subscription':'2544425','Pavillio Per Client Fee':'2544421','Pavillio Platform - Basic':'2544427',
-                                    'Pavillio Platform - Lite':'2544427'}
+                                    'Pavillio Platform - Lite':'2544427','Billing Services Overages':'2590590','Core Overages':'2590591','Duals and Medicare Home Overages':'2590592','I/DD Overages':'2590593',
+                                    'Medicaid Home Health Overages':'2590594','Startup Package Overages':'2590595','Core+ Overages':'2637227','Core++ Overages':'2637228'}
 
             #Instantiate the component price points controller
             component_price_points_controller = client.component_price_points
