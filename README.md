@@ -1,5 +1,5 @@
 # SFDC-MaxioAB-Integration
-This AWS Lambda function integrates Salesforce data with Maxio Advanced Billing (AB) and Core. It processes closed won opportunities in Salesforce and creates corresponding customer records, component price points, and subscriptions in AB. It then establishes a relationsip from AB to Maxio Core.
+This AWS Lambda function integrates Salesforce data with Maxio Advanced Billing (AB) and Core. It processes closed won opportunities in Salesforce and creates corresponding customer records, component price points, and subscriptions in AB. It then establishes a relationship from AB to Maxio Core.
 
 ## Process Design
 ![image](https://github.com/user-attachments/assets/d6cab57d-adbb-487f-a82a-1c4a034ad129)
